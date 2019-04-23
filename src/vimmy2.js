@@ -145,22 +145,6 @@
 
     if ( MODE === 'command' ) {
 
-      if ( key.isIn([ 'f', 'shift-f' ]) ) {
-        swallowEvent( event );
-
-        FORCE_NEW_TAB = ( key === 'shift-f' );
-
-        $elements = getVisibleElements();
-        if ( $elements.length === 0 ) return;
-
-        MODE = 'elements';
-
-        HINTS = createHintsForElements( $elements );
-        showHints();
-
-        return;
-      }
-
       if ([ 'h', 'j', 'k', 'l' ].contains( key ) ) {
         swallowEvent( event );
 
@@ -204,29 +188,8 @@
         swallowEvent( event );
       }
 
-      if ( key === 'x' ) {
-        closeTab();
-      }
-
-      if ( key === 'r' ) {
-        reloadTab();
-      }
-
-      if ( key === 'shift-j' ) ( swallowEvent( event ) && goToPreviousTab() );
-      if ( key === 'shift-k' ) ( swallowEvent( event ) && goToNextTab() );
-
-      if ( key === 'i' && PREVIOUS_KEY === 'g' ) ( swallowEvent( event ) && focusFirstInput() );
-
       if ( key === 'g' && PREVIOUS_KEY === 'g' ) scrollTo( null, 0 );
       if ( key === 'shift-g' ) scrollTo( null, $( document ).height() );
-
-      if ( key === 'shift-t' && PREVIOUS_KEY === 'g' ) ( swallowEvent( event ) && goToPreviousTab() );
-      if ( key === 't' && PREVIOUS_KEY === 'g' ) ( swallowEvent( event ) && goToNextTab() );
-
-      if ( key === 'shift-h' ) goBackHistory();
-      if ( key === 'shift-l' ) goForwardHistory();
-
-      if ( key === 't' && PREVIOUS_KEY !== 'g' ) ( swallowEvent( event ) && openNewTab() );
 
       if ( !isNaN( key ) ) {
         MULTIPLIER = MULTIPLIER * 10 + key;
